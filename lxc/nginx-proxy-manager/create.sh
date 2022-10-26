@@ -31,7 +31,7 @@ function error {
 }
 
 # Base raw github URL
-_raw_base="https://raw.githubusercontent.com/ej52/proxmox-scripts/main/lxc/nginx-proxy-manager"
+_raw_base="https://raw.githubusercontent.com/hereisderek/proxmox-scripts/dev/derek/lxc/nginx-proxy-manager"
 # Operating system
 _os_type=alpine
 _os_version=3.16
@@ -156,8 +156,8 @@ _rootfs=${_storage}:${_disk_ref-}${_disk}
 
 # Create LXC
 info "Allocating storage for LXC container..."
-pvesm alloc $_storage $_ctid $_disk $_disk_size --format ${_disk_format:-raw} &>/dev/null \
-  || error "A problem occured while allocating storage."
+pvesm alloc $_storage $_ctid $_disk $_disk_size --format ${_disk_format:-raw} &>/dev/null #\
+  #|| error "A problem occured while allocating storage."
 
 if [ "$_storage_type" = "zfspool" ]; then
   warn "Some containers may not work properly due to ZFS not supporting 'fallocate'."

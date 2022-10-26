@@ -96,7 +96,7 @@ log "Setting up python"
 python3 -m venv /opt/certbot/
 runcmd python3 -m ensurepip --upgrade
 # Install certbot and python dependancies
-runcmd pip3 install --no-cache-dir -U cryptography==3.3.2
+runcmd pip3 install --no-cache-dir -U cryptography
 runcmd pip3 install --no-cache-dir cffi certbot
 
 log "Checking for latest NPM release"
