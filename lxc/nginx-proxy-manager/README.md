@@ -2,6 +2,13 @@
 
 Many benefits can be gained by using a LXC container compared to a VM. The resources needed to run a LXC container are less than running a VM. Modifing the resouces assigned to the LXC container can be done without having to reboot the container. The serial devices connected to Proxmox can be shared with multiple LXC containers simulatenously.
 
+
+### update: the following tested on the latest alpine lxc container under the lastest proxmox (7.2)
+
+``` bash
+wget --no-cache -qO - https://raw.githubusercontent.com/hereisderek/proxmox-scripts/main/lxc/nginx-proxy-manager/setup.sh | sh
+```
+
 ## Usage
 
 To create a new LXC container on Proxmox and setup Nginx Proxy Manager to run inside of it, run the following in a SSH connection or the Proxmox web shell.
@@ -12,6 +19,7 @@ To create a new LXC container on Proxmox and setup Nginx Proxy Manager to run in
 ```bash
 curl -sL https://raw.githubusercontent.com/ej52/proxmox/main/lxc/nginx-proxy-manager/create.sh | bash -s
 ```
+
 
 ### Command line arguments
 | argument           | default              | description                                            |
