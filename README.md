@@ -3,7 +3,7 @@
 Some useful proxmox scripts...
 
 
-## Scripts
+### Scripts
 
-[Nginx Proxy Manager](lxc/nginx-proxy-manager)
-[ddns_updater](lxc/ddns_updater)
+- [Nginx Proxy Manager](lxc/nginx-proxy-manager)
+- [ddns_updater](lxc/ddns_updater)
