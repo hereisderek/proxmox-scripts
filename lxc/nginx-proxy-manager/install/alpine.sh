@@ -185,7 +185,6 @@ runcmd yarn install
 runcmd yarn build
 cp -r dist/* /app/frontend
 cp -r app-images/* /app/frontend/images
-runcmd yarn cache clean 
 
 # Initialize backend
 log "Initializing backend"
@@ -256,6 +255,9 @@ runcmd rc-service openresty start
 runcmd rc-service npm start
 
 IP=$(ip a s dev eth0 | sed -n '/inet / s/\// /p' | awk '{print $2}')
+
+log "Clearning yarn cache"
+runcmd yarn cache clean 
 log "Installation complete
 
 \e[0mNginx Proxy Manager should be reachable at the following URL.
