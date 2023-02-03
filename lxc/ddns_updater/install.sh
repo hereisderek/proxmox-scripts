@@ -4,6 +4,15 @@ URL='https://github.com/qdm12/ddns-updater.git'
 BRANCH='master'
 TAG='latest'
 
+# set go cache
+export GOCACHE=/tmp/go-cache
+export GOPATH=/tmp/go
+export GOROOT=/tmp/go-root
+
+rm -rf $GOCACHE $GOPATH $GOROOT /usr/lib/go
+mkdir -p $GOCACHE $GOPATH $GOROOT
+
+ln -s /tmp/go-lib /usr/lib/go
 apk update
 apk add --no-cache git make musl-dev go g++ nano
 
@@ -12,12 +21,8 @@ git clone  $URL --depth=1 --single-branch --branch $BRANCH  /tmp/ddns-updater
 cd /tmp/ddns-updater
 go mod download
 
-# set go cache
-export GOCACHE=/tmp/go-cache
-rm -rf $GOCACHE
-mkdir -p $GOCACHE
-go env GOCACHE
 
+echo -e "GOCACHEL: $(go env GOCACHE) GOPATH:$(go env GOPATH)"
 
 VERSION="unknown"
 BUILD_DATE=$(date +'%Y%m%d')
