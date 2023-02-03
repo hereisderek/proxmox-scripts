@@ -176,8 +176,15 @@ cp -r global/* /app/global
 # Build the frontend
 log "Building frontend"
 cd ./frontend
-export NODE_ENV=development
+export NODE_ENV=production
 export NODE_OPTIONS=--openssl-legacy-provider
+#export NODE_PATH=/tmp/node_modules
+
+#runcmd rm -rf $NODE_PATH
+#runcmd mkdir -p $NODE_PATH
+#runcmd chmod -R 0777 $NODE_PATH
+
+runcmd mkdir -p /tmp/yarn-cache
 runcmd mkdir -p /tmp/yarn-cache
 runcmd chmod -R 0777 /tmp/yarn-cache
 runcmd yarn config set cache-folder /tmp/yarn-cache
@@ -205,8 +212,9 @@ cat << 'EOF' > /app/config/production.json
 }
 EOF
 fi
+
+
 cd /app
-export NODE_ENV=development
 runcmd yarn install
 
 # Create NPM service
@@ -216,6 +224,7 @@ cat << 'EOF' > /etc/init.d/npm
 description="Nginx Proxy Manager"
 
 command="/usr/bin/node"
+# NODE_PATH=/tmp/node_modules 
 command_args="index.js --abort_on_uncaught_exception --max_old_space_size=250"
 command_background="yes"
 directory="/app"
