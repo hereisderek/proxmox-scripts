@@ -177,6 +177,7 @@ cp -r global/* /app/global
 log "Building frontend"
 cd ./frontend
 export NODE_ENV=development
+export NODE_OPTIONS=--openssl-legacy-provider
 runcmd mkdir -p /tmp/yarn-cache
 runcmd chmod -R 0777 /tmp/yarn-cache
 runcmd yarn config set cache-folder /tmp/yarn-cache
