@@ -23,7 +23,9 @@ VERSION="unknown"
 BUILD_DATE=$(date +'%Y%m%d')
 COMMIT=$(git rev-parse --short HEAD)
 
-go build -trimpath -ldflags="-s -w \
+#use static go
+# CGO_ENABLED=0 
+go build -a -trimpath -ldflags="-extldflags '-static' -s -w \
     -X 'main.version=$VERSION' \
     -X 'main.buildDate=$BUILD_DATE' \
     -X 'main.commit=$COMMIT' \
