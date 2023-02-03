@@ -176,7 +176,8 @@ cp -r global/* /app/global
 # Build the frontend
 log "Building frontend"
 cd ./frontend
-export NODE_ENV=production
+# export NODE_ENV=production
+export NODE_ENV=development
 export NODE_OPTIONS=--openssl-legacy-provider
 #export NODE_PATH=/tmp/node_modules
 
@@ -184,7 +185,6 @@ export NODE_OPTIONS=--openssl-legacy-provider
 #runcmd mkdir -p $NODE_PATH
 #runcmd chmod -R 0777 $NODE_PATH
 
-runcmd mkdir -p /tmp/yarn-cache
 runcmd mkdir -p /tmp/yarn-cache
 runcmd chmod -R 0777 /tmp/yarn-cache
 runcmd yarn config set cache-folder /tmp/yarn-cache
@@ -241,7 +241,7 @@ start_pre() {
   mkdir -p /tmp/nginx/body \
   /data/letsencrypt-acme-challenge
 
-  export NODE_ENV=production
+  # export NODE_ENV=production
 }
 
 stop() {
