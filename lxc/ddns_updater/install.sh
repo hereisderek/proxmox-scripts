@@ -12,6 +12,13 @@ git clone  $URL --depth=1 --single-branch --branch $BRANCH  /tmp/ddns-updater
 cd /tmp/ddns-updater
 go mod download
 
+# set go cache
+export GOCACHE=/tmp/go-cache
+rm -rf $GOCACHE
+mkdir -p $GOCACHE
+go env GOCACHE
+
+
 VERSION="unknown"
 BUILD_DATE=$(date +'%Y%m%d')
 COMMIT=$(git rev-parse --short HEAD)
@@ -87,6 +94,7 @@ restart() {
 }
 EOF
 
+go clean -cache
 rc-service ddns-updater stop &>/dev/null
 chmod a+x /etc/init.d/ddns-updater
 sleep 3
